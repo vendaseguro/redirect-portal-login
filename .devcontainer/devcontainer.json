@@ -1,0 +1,6 @@
+{
+  "name": "Cloudflare Worker",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20", 
+  "features": {},
+  "postCreateCommand": "npm install"
+}
