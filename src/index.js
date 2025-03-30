@@ -12,7 +12,7 @@ export default {
     const hasToken = !!token;
 
     if (isPortal && !hasToken) {
-      const redirectUrl = `https://hub.vendaseguro.com.br/login?redirect_portal=${encodeURIComponent(url.href)}`;
+      const redirectUrl = `https://hub.vendaseguro.com.br/login?redirect_portal=${url.href}`;
       console.log("🔁 Redirecionando para:", redirectUrl);
       return Response.redirect(redirectUrl, 302);
     }
