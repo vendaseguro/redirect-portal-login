@@ -3,10 +3,9 @@
   "compatibility_date": "2024-11-01",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/index.js",
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS"
-  },
+  "routes": [
+    "https://portal.vendaseguro.com.br/*"
+  ],
   "observability": {
     "enabled": true
   },
