@@ -1,0 +1,11 @@
+name = "redirect-portal-login"
+type = "javascript"
+
+account_id = "934e7b62c3bc729d8829a96acb9579b7"
+workers_dev = false
+
+routes = [
+  "https://portal.vendaseguro.com.br/*"
+]
+
+compatibility_date = "2024-11-01"
