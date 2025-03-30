@@ -1,7 +1,6 @@
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request) {
     const url = new URL(request.url);
-
     const host = request.headers.get("host");
     const token = url.searchParams.get("token");
 
