@@ -8,20 +8,19 @@ export default {
     const match = cookieHeader.match(/vs_token_portal=([^;]+)/);
     const tokenFromCookie = match ? match[1] : null;
 
-    console.log("🌐 Host recebido:", host);
-    console.log("🔗 URL acessada:", url.href);
-    console.log("🍪 Token no cookie:", tokenFromCookie);
-
     const isPortal = host === "portal.vendaseguro.com.br";
     const hasToken = !!tokenFromCookie;
 
-    if (isPortal && !hasToken) {
-      const redirectUrl = `https://hub.vendaseguro.com.br/login?redirect_portal=${url.href}`;
-      console.log("🔁 Redirecionando para:", redirectUrl);
+    // Redireciona para o Hub apenas se estiver no Portal e sem token no cookie
+    // IMPORTANTE: só executa isso se NÃO houver nenhum parâmetro token na URL
+    const urlHasTokenParam = url.searchParams.has("token");
+
+    if (isPortal && !hasToken && !urlHasTokenParam) {
+      const redirectUrl = `https://hub.vendaseguro.com.br/login?redirect_portal=${encodeURIComponent(url.href)}`;
       return Response.redirect(redirectUrl, 302);
     }
 
-    console.log("✅ Token encontrado no cookie. Acesso liberado.");
+    // Caso contrário, segue a requisição normalmente
     return fetch(request);
   },
 };
