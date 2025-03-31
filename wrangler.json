@@ -4,7 +4,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/index.js",
   "routes": [
-    "https://portal.vendaseguro.com.br/*"
+    "https://portal.vendaseguro.com.br/users/sign_in"
   ],
   "observability": {
     "enabled": true
