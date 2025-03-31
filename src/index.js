@@ -4,6 +4,7 @@ export default {
     const host = request.headers.get("host");
     const cookieHeader = request.headers.get("cookie") || "";
 
+    // Extrai o token do cookie
     const match = cookieHeader.match(/vs_token_portal=([^;]+)/);
     const tokenFromCookie = match ? match[1] : null;
 
@@ -11,8 +12,12 @@ export default {
     const hasToken = !!tokenFromCookie;
     const urlHasTokenParam = url.searchParams.has("token");
 
-    // ⚠️ EXCLUIR RECURSOS ESTÁTICOS DA VERIFICAÇÃO
-    const staticExtensions = [".js", ".css", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".json", ".woff", ".woff2", ".ttf", ".eot"];
+    // Ignora recursos estáticos
+    const staticExtensions = [
+      ".js", ".css", ".png", ".jpg", ".jpeg", ".gif",
+      ".svg", ".ico", ".json", ".woff", ".woff2",
+      ".ttf", ".eot", ".mp4", ".webm", ".mp3"
+    ];
     const isStaticAsset = staticExtensions.some(ext => url.pathname.endsWith(ext));
 
     if (isPortal && !hasToken && !urlHasTokenParam && !isStaticAsset) {
