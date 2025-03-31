@@ -12,11 +12,11 @@ export default {
         .map(([k, ...v]) => [k, v.join("=")])
     );
 
-    const token = cookies["token_member_kit_1"]; // 🍪 Token salvo via cookie
+    const token = cookies["vs_token_portal"]; // <- Cookie correto
 
     console.log("🌐 Host recebido:", host);
     console.log("🔗 URL acessada:", url.href);
-    console.log("🍪 Cookie token_member_kit_1:", token);
+    console.log("🍪 Cookie vs_token_portal:", token);
 
     const isPortal = host === "portal.vendaseguro.com.br";
     const hasToken = !!token;
@@ -27,7 +27,7 @@ export default {
       return Response.redirect(redirectUrl, 302);
     }
 
-    console.log("✅ Cookie de token presente. Acesso liberado.");
+    console.log("✅ Cookie detectado. Acesso permitido ao portal.");
     return fetch(request);
   }
 };
