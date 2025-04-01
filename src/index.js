@@ -1,9 +1,3 @@
-console.log("[debug] Host:", host);
-console.log("[debug] Path:", path);
-console.log("[debug] Cookie Header:", cookieHeader);
-console.log("[debug] Cookie Token:", cookieToken);
-console.log("[debug] URL Token:", urlToken);
-
 export default {
   async fetch(request) {
     const url = new URL(request.url);
@@ -28,6 +22,15 @@ export default {
     const cookieToken = cookieMatch ? cookieMatch[1] : null;
     const urlToken = url.searchParams.get("token");
 
+    // DEBUG
+    console.log("🟡 Venda Seguro - Debug");
+    console.log("[debug] Host:", host);
+    console.log("[debug] Path:", path);
+    console.log("[debug] Accept Header:", accept);
+    console.log("[debug] Cookie Header:", cookieHeader);
+    console.log("[debug] Cookie Token:", cookieToken);
+    console.log("[debug] URL Token:", urlToken);
+
     const shouldRedirect =
       isPortal &&
       !isRoot &&
@@ -36,11 +39,15 @@ export default {
       isHtml &&
       !isStatic;
 
+    console.log("[debug] shouldRedirect:", shouldRedirect);
+
     if (shouldRedirect) {
       const redirectUrl = `https://hub.vendaseguro.com.br/login?redirect_portal=${encodeURIComponent(url.href)}`;
+      console.log("[debug] 🔁 Redirecionando para:", redirectUrl);
       return Response.redirect(redirectUrl, 302);
     }
 
+    // Repassa requisição normalmente
     return fetch(request);
   },
 };
