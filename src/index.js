@@ -1,3 +1,9 @@
+console.log("[debug] Host:", host);
+console.log("[debug] Path:", path);
+console.log("[debug] Cookie Header:", cookieHeader);
+console.log("[debug] Cookie Token:", cookieToken);
+console.log("[debug] URL Token:", urlToken);
+
 export default {
   async fetch(request) {
     const url = new URL(request.url);
